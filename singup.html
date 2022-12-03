@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrase</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <section class="form-main">
+        <div class="form-content">
+            <div class="box">
+                <h3>Crear una cuenta</h3>
+                <form action="">
+                    <div class="input-box">
+                        <input type="text" placeholder="Nombres" class="input-control">
+                    </div>
+                    <div class="input-box">
+                        <input type="text" placeholder="Apellidos" class="input-control">
+                    </div>
+                    <div class="input-box">
+                        <input type="email" placeholder="Email" class="input-control" id="email2">
+                    </div>
+                    <div class="input-box">
+                        <input type="password" placeholder="Password" class="input-control" id="pass2">
+                    </div>
+                    <button type="submit" class="btn" id="crear">Crear cuenta</button>
+                    <br>
+                    <br>
+                    <a href="#" class="gradient-text" id="google">Registrarse con cuenta de google</a>
+                </form>
+                <p>Ya tienes una cuenta?<a href="./index.html" class="gradient-text">Iniciar Sesión</a></p>
+            </div>
+        </div>
+    </section>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithRedirect, getRedirectResult} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB76R1U-iH22UD7IG_sbP08Xbcl5nZNKZg",
+            authDomain: "preyecto---3.firebaseapp.com",
+            projectId: "preyecto---3",
+            storageBucket: "preyecto---3.appspot.com",
+            messagingSenderId: "1090965104970",
+            appId: "1:1090965104970:web:dfbb297f44c051fb47b9b3"
+        };
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider(app);
+
+        //conectamos con los id de re registrarse
+        document.getElementById("crear").addEventListener("click", function(){
+            const email = document.getElementById("email2").value;
+            const Password = document.getElementById("pass2").value;
+
+        createUserWithEmailAndPassword(auth, email, Password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            // ...
+        })
+            alert("Tu cuenta ha sido creada")
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // ..
+            alert("no se ah podido crear")
+        });
+            
+        })
+
+        document.getElementById("google").addEventListener("click", function(){
+            signInWithRedirect(auth, provider);
+            getRedirectResult(auth)
+        .then((result) => {
+            // This gives you a Google Access Token. You can use it to access Google APIs.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+
+            // The signed-in user info.
+            const user = result.user;
+        }).catch((error) => {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // The email of the user's account used.
+            const email = error.customData.email;
+            // The AuthCredential type that was used.
+            const credential = GoogleAuthProvider.credentialFromError(error);
+            // ...
+        });
+        })
+    </script>
+</body>
+</html>

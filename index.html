@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+    <section class="form-main">
+        <div class="form-content">
+            <div class="box">
+                <h3>Bienvenido</h3>
+                <form action="">
+                    <div class="input-box">
+                        <input type="email" placeholder="Email" class="input-control" id="email1">
+                    </div>
+                    <div class="input-box">
+                        <input type="password" placeholder="Password" class="input-control" id="pass1">
+                        <div class="input-link">
+                            <a href="./recuperar.html" class="gradient-text">Has olvidado tu contraseña</a>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn" id="acceder">Iniciar Seción</button>
+                </form>
+                <p>No tienes una cuenta?<a href="./singup.html" class="gradient-text">Crear cuenta</a></p>
+            </div>
+        </div>
+    </section>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyB76R1U-iH22UD7IG_sbP08Xbcl5nZNKZg",
+            authDomain: "preyecto---3.firebaseapp.com",
+            projectId: "preyecto---3",
+            storageBucket: "preyecto---3.appspot.com",
+            messagingSenderId: "1090965104970",
+            appId: "1:1090965104970:web:dfbb297f44c051fb47b9b3"
+        };
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        //conectamos con el id y obtenemos los valores
+        document.getElementById("acceder").addEventListener("click", function(){
+            const email1 = document.getElementById("email1").value;
+            const pass1 = document.getElementById("pass1").value;
+
+        signInWithEmailAndPassword(auth, email1, pass1)
+            .then((userCredential) => {
+                // Signed in 
+                const user = userCredential.user;
+                // ...
+                alert("tu cunta esta activa")
+            })
+            
+            window.open("https://www.youtube.com/")
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+            alert("Esta cuenta no existe o has llenado incorrectamente, es necesario registrarse")    
+            });
+            
+
+        })
+    </script>
+</body>
+</html>

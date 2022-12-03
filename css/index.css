@@ -1,0 +1,176 @@
+:root{
+    --green: hsl(162, 45%, 56%);
+    --plomo: hsl(162, 2%, 56%);
+    --blue: hsl(220, 85%, 57%);
+    --violet: hsl(272, 92%, 32%);
+    --tex-white: hsl(0, 0%, 100%);
+    --text-light-gray: hsl(0, 0%, 90%);
+    --body-bg-color: hsl(200, 54%, 12%);
+    --glass-bg-color: hsl(0, 0%, 100%, 0.05);
+    --border-color: hsl(0, 0%, 100%, 0.25);
+    --blur: blur(10px);
+    --button-hover-color: hsl(0, 0%, 0%, 0.3);
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    /* background: rgb(18,98,113);
+    background: linear-gradient(90deg, rgba(18,98,113,1) 0%, rgba(40,7,50,1) 100%); */
+    background-image: url(https://www.hdwallpapers.net/previews/abstract-black-low-poly-303.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.5;
+    color: white;
+    overflow: hidden;
+}
+
+a{
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+}
+
+.gradient-text{
+    color: rgb(101, 215, 179);
+    color: linear-gradient(90deg, rgb(23, 141, 104) 100%, rgba(137,31,168,1) 100%);
+}
+
+.form-main{
+    min-height: 100vh;
+    padding: 60px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-content{
+    width: 100%;
+    max-width: 450px;
+    position: relative;
+    z-index: 1;
+}
+
+.form-content .box{
+    border-color: var(--glass-bg-color);
+    border: 1px solid var(--border-color);
+    padding: 40px 50px;
+    border-radius: 20px;
+    backdrop-filter: var(--blur);
+}
+
+.form-content h3{
+    font-size: 28px;
+    text-align: center;
+    line-height: 1.2;
+    font-weight: 500;
+    color: var(--tex-white);
+}
+
+.form-content form{
+    margin: 25px 0 20px;
+}
+
+.form-content .input-box{
+    margin: 25px;
+}
+
+.form-content ::placeholder{
+    color: rgb(224, 221, 221);
+    opacity: 1;
+}
+
+.form-content .input-control{
+    display: flex;
+    height: 45px;
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+    color: inherit;
+    font-weight: inherit;
+    font-family: inherit;
+    font-size: 16px;
+}
+
+.form-content .input-control:focus{
+    outline: none;
+}
+
+.form-content .input-link{
+    margin-top: 10px;
+    text-align: right;
+}
+
+.form-content .btn{
+    height: 45px;
+    width: 100%;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: capitalize;
+    font-family: inherit;
+    cursor: pointer;
+    border-radius: 25px;
+    user-select: none;
+    border: none;
+    background: rgb(32,215,149);
+    background: linear-gradient(90deg, rgba(32,215,149,1) 0%, rgba(193,42,237,1) 100%);
+    color: white;
+    position: relative;
+    /* z-index: 1; */
+    overflow: hidden;
+}
+
+.form-content .btn::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    transition: 0.5s;
+    z-index: -1;
+}
+
+.btn:hover{
+    background: rgb(24,154,107);
+    background: linear-gradient(90deg, rgba(24,154,107,1) 0%, rgba(137,31,168,1) 100%);
+    transform: 1s;
+}
+
+.form-content p{
+    text-align: center;
+}
+
+#google{
+    margin: 0 0 0 60px;
+}
+
+#google:hover{
+    color: rgb(53, 207, 234);
+}
+
+
+@media(max-width: 575px){
+    body::after,
+    body::before{
+        height: 250px;
+        width: 250px;
+        filter: blur(100px);
+    }
+
+    .form-content .box{
+        padding: 30px;
+    }
+
+    .form-content h3{
+        font-size: 24px;
+    }
+}
